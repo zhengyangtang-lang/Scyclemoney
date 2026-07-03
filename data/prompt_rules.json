@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "v56-ai-prompt-rules",
+  "note": "AI只负责识别字段；算法由页面固定JS执行。",
+  "forgingRequiredFields": [
+    "part_no",
+    "material",
+    "bar_source",
+    "bar_diameter",
+    "bar_length",
+    "internal_blank_weight",
+    "pcs_per_cycle",
+    "forge_line",
+    "forge_cycle",
+    "heat_line",
+    "heat_cycle",
+    "acid_line",
+    "acid_cycle",
+    "shot_line",
+    "shot_cycle"
+  ],
+  "machiningRequiredFields": [
+    "part_number",
+    "op",
+    "equipment",
+    "program",
+    "clamp",
+    "scycle",
+    "cavity"
+  ],
+  "algorithmRules": [
+    "外购棒/挤压棒不受铸棒直径限制，不计算扒皮和料头料尾，直接带入短棒信息。",
+    "内铸棒按短棒直径+扒皮余量匹配长棒直径；低于最小值按最小长棒计算并提示；高于最大值报错。",
+    "机加工单件循环=Scycle/Cavity；自动打码节拍跟随最后一道机加工。",
+    "锻造/热处理/酸洗/抛丸节拍只取原表结果值，不用中间参数替代。"
+  ]
+}
